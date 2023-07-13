@@ -13,7 +13,8 @@ First, we will create a mask using an automatic thresholding procedure.
 During this process we will keep track of the commands using the macro recorder:  
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
-Open a nuclei image from the ***data*** directory:   
+Open a nuclei image from the <span style="color:#5788b4">***data***</span>
+ directory:   
 - ![File] <sup>></sup> ![Open...]
 
 Duplicate the image: 

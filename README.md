@@ -23,11 +23,13 @@ Duplicate the image:
 - ![Image] <sup>></sup> ![Duplicate...]
 
 Filter image using a Gaussian kernel:   
-- `Process` > `Filters` > `Gaussian Blur...`
+<!-- - `Process` > `Filters` > `Gaussian Blur...` -->
+- ![Process] <sup>></sup> ![Filters] <sup>></sup> ![Gaussian%20Blur...]
     - Select `Sigma` = 2
 
 Open the Threshold menu:  
-- `Image` > `Adjust` > `Threshold...`
+<!-- - `Image` > `Adjust` > `Threshold...` -->
+- ![Image] <sup>></sup> ![Adjust] <sup>></sup> ![Threshold...]
     - Select `Otsu` method
     - Click the `Apply` button
 
@@ -83,3 +85,8 @@ The first step of automation w
 [Open...]: https://img.shields.io/badge/Open...-f0f0f0?style=plastic
 [Image]: https://img.shields.io/badge/Image-f0f0f0?style=plastic
 [Duplicate...]: https://img.shields.io/badge/Duplicate...-f0f0f0?style=plastic
+[Process]: https://img.shields.io/badge/Process-f0f0f0?style=plastic
+[Filters]: https://img.shields.io/badge/Filters-f0f0f0?style=plastic
+[Gaussian%20Blur...]: https://img.shields.io/badge/Gaussian%20Blur...-f0f0f0?style=plastic
+[Adjust]: https://img.shields.io/badge/Adjust-f0f0f0?style=plastic
+[Threshold...]: https://img.shields.io/badge/Threshold...-f0f0f0?style=plastic

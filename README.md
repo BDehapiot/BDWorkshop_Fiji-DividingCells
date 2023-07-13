@@ -11,24 +11,19 @@ We will first try the procedure manually.
 First, we will create a mask using an automatic thresholding procedure.  
 
 During this process we will keep track of the commands using the macro recorder:  
-<!-- - `Plugins` > `Macros` > `Record...` -->
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
 Open a nuclei image from the ***data*** directory:   
-<!-- - `File` > `Open...` -->
 - ![File] <sup>></sup> ![Open...]
 
 Duplicate the image: 
-<!-- - `Image` > `Duplicate...` -->
 - ![Image] <sup>></sup> ![Duplicate...]
 
 Filter image using a Gaussian kernel:   
-<!-- - `Process` > `Filters` > `Gaussian Blur...` -->
 - ![Process] <sup>></sup> ![Filters] <sup>></sup> ![Gaussian%20Blur...]
     - Select ***Sigma*** = 2
 
 Open the Threshold menu:  
-<!-- - `Image` > `Adjust` > `Threshold...` -->
 - ![Image] <sup>></sup> ![Adjust] <sup>></sup> ![Threshold...]
     - Select ***Otsu*** method
     - Click the ***Apply*** button
@@ -40,21 +35,18 @@ We obtain a binary black (0) and white (255) mask.
 We will now apply some binary operations to improve our mask.
 
 Fill holes in the segemented objects:
-<!-- - `Process` > `Binary` > `Fill Holes` -->
 - ![Process] <sup>></sup> ![Binary] <sup>></sup> ![Fill%20Holes]
 
-Separate touching objects using the `Watershed` function:
-<!-- - `Process` > `Binary` > `Watershed` -->
+Separate touching objects using the ***Watershed*** function:
 - ![Process] <sup>></sup> ![Binary] <sup>></sup> ![Watershed]
 
 ## 3. Objects selection
 
-Using the `Analyse Particles` menu we will next select objects based on their size and position:  
-<!-- - `Analyse` > `Analyse Particles...` -->
+Using the ***Analyse Particles*** menu we will next select objects based on their size and position:  
 - ![Analyse] <sup>></sup> ![Analyse%20Particles...]
-    - Select `Size` = 300-Infinity (pixel units)`  
-    - Select `Exclude on edges`
-    - Select `Add to Manager`
+    - Select ***Size*** = 300-Infinity (pixel units)***  
+    - Select ***Exclude on edges***
+    - Select ***Add to Manager***
 
 Our objects are now stored as regions of interests in the ROI manager. 
 
@@ -63,16 +55,15 @@ Our objects are now stored as regions of interests in the ROI manager.
 The last step will consist of measuring the mean fluorescence intensity on the original image.
 
 Setup Fiji to measure mean fluorescence intensities:
-<!-- - `Analyse` > `Set Measurments...` -->
 - ![Analyse] <sup>></sup> ![Set%20Measurments...]
-    - Select only `Mean gray value` 
+    - Select only ***Mean gray value*** 
 
 Select the original image and do the following on the ROI manager:
-- Display ROIs by selecting `Show All` and `Labels`
-- Make sure that no ROIs are selected by clicking `Deselect`
-- Quantify fluorescence by clicking `Measure`
+- Display ROIs by selecting ***Show All*** and ***Labels***
+- Make sure that no ROIs are selected by clicking ***Deselect***
+- Quantify fluorescence by clicking ***Measure***
 
-This should open a `Results` window with fluorescence mean intensity for every ROI.  
+This should open a ***Results*** window with fluorescence mean intensity for every ROI.  
 You can compare values for normal and dividing cells.
 
 # B - Automation

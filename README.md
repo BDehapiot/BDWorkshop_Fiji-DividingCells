@@ -15,9 +15,15 @@ During this process we will keep track of the commands using the macro recorder:
 
 Open ***image_01.tif*** from the ***data*** directory:   
 - ![File] <sup>></sup> ![Open...]
+```
+open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
+```
 
 Duplicate the image: 
 - ![Image] <sup>></sup> ![Duplicate...]
+```
+run("Duplicate...", " ");
+```
 
 Filter image using a Gaussian kernel:   
 - ![Process] <sup>></sup> ![Filters] <sup>></sup> ![Gaussian%20Blur...]
@@ -71,7 +77,7 @@ You can compare values for normal and dividing cells.
 The first step of automation w
 
 ```
-// Open ***image_01.tif*** from the ***data*** directory:  
+// Open image_01.tif from the data directory:  
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
 // Duplicate the image:

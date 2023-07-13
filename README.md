@@ -13,6 +13,10 @@ First, we will create a mask using an automatic thresholding procedure.
 During this process we will keep track of the commands using the macro recorder:  
 - `Plugins` > `Macros` > `Record...`
 
+- ![Static Badge](https://img.shields.io/badge/%20Plugins%20-%20blue?color=rgb(100%2C%20100%2C%20100)) > ![Static Badge](https://img.shields.io/badge/%20Macros%20-%20blue?color=rgb(100%2C%20100%2C%20100)) > ![Static Badge](https://img.shields.io/badge/%20Record%20-%20blue?color=rgb(100%2C%20100%2C%20100)) 
+
+
+
 Open a nuclei image from the `data` directory:   
 - `File` > `Open...`
 

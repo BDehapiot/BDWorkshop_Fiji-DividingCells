@@ -6,11 +6,11 @@ Learn how to detect dividing cells using Fiji and ImageJ macro
 During this tutorial we will try to detect dividing cells based on...  
 We will first try the procedure manually.
 
-## 1. Segmentation mask
+## 1. Create mask
 
 First, we will create a mask using an automatic thresholding procedure.  
 
-During this process we will keep track of the commands using the macro recorder:  
+During this process we will keep track of the commands using the ***macro recorder***:  
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
 Open ***image_01.tif*** from the ***data*** directory:   
@@ -44,13 +44,13 @@ Separate touching objects using the ***Watershed*** function:
 
 Using the ***Analyse Particles*** menu we will next select objects based on their size and position:  
 - ![Analyse] <sup>></sup> ![Analyse%20Particles...]
-    - Select ***Size*** = 300-Infinity (pixel units)***  
+    - Select ***Size*** = 300-Infinity
     - Select ***Exclude on edges***
     - Select ***Add to Manager***
 
-Our objects are now stored as regions of interests in the ROI manager. 
+Our objects are now stored as regions of interests in the ***ROI manager***. 
 
-## 4. Measure fluorescence intensities
+## 4. Fluorescence intensities measurments
 
 The last step will consist of measuring the mean fluorescence intensity on the original image.
 
@@ -68,42 +68,42 @@ You can compare values for normal and dividing cells.
 
 # B - Automation
 
-The first step of automation will be to reproduce step by step the above procedure
-using the commands saved in the the macro recorder.
+We will now automate the above procedure using ImageJ Macro language.
 
+## 1. Recapitulate the basic procedure
+Open the Fiji ***IDE*** (Integrated Development Environment):
+- ![Plugins] <sup>></sup> ![New] <sup>></sup> ![Macro]
+
+### Exercice #1
+Using the commands saved in the macro recorder assemble a macro to repeat the procedure.  
+- You will first need to open the 
+- Be careful to select the appropiate image
 
 
 <details>
-  <summary>Macro_01_BasicProcedure.ijm</summary>
+  
+<summary>Macro_01_BasicProcedure.ijm</summary>
 
  ```
-// Open image_01.tif from the data directory:  
+// Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
-// Duplicate the image:
+// Segmentation mask: 
 run("Duplicate...", " ");
-
-// Gaussian Blur: 
 run("Gaussian Blur...", "sigma=2");
-
-// Apply threshold:
 setAutoThreshold("Otsu dark no-reset");
 setOption("BlackBackground", true);
 run("Convert to Mask");
 
-// Fill holes:
+// Binary operations: 
 run("Fill Holes");
-
-// Separate touching objects:
 run("Watershed");
 
-// Select objects based on their size and position:
-run("Analyze Particles...", "size=300-Infinity pixel exclude add");
+// Objects selection:
+run("Analyze Particles...", "size=300-Infinity exclude add");
 
-// Setup Fiji to measure mean intensities:
+// Fluorescence intensities measurements:
 run("Set Measurements...", "mean redirect=None decimal=3");
-
-// Get measurments from the original image:
 selectWindow("image_01.tif");
 roiManager("Show All with labels");
 roiManager("Deselect");
@@ -111,8 +111,6 @@ roiManager("Measure");
 ```
 
 </details>
-
-
 
 <!---[ Buttons ]-------------------------------------------------------------->
 [Plugins]: https://img.shields.io/badge/Plugins-f0f0f0?style=plastic
@@ -133,3 +131,5 @@ roiManager("Measure");
 [Analyse]: https://img.shields.io/badge/Analyse-f0f0f0?style=plastic
 [Analyse%20Particles...]: https://img.shields.io/badge/Analyse%20Particles...-f0f0f0?style=plastic
 [Set%20Measurments...]: https://img.shields.io/badge/Set%20Measurments...-f0f0f0?style=plastic
+[New]: https://img.shields.io/badge/New-f0f0f0?style=plastic
+[Macro]: https://img.shields.io/badge/Macro-f0f0f0?style=plastic

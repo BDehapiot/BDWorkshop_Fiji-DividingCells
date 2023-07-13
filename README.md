@@ -15,15 +15,9 @@ During this process we will keep track of the commands using the macro recorder:
 
 Open ***image_01.tif*** from the ***data*** directory:   
 - ![File] <sup>></sup> ![Open...]
-```
-open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
-```
 
 Duplicate the image: 
 - ![Image] <sup>></sup> ![Duplicate...]
-```
-run("Duplicate...", " ");
-```
 
 Filter image using a Gaussian kernel:   
 - ![Process] <sup>></sup> ![Filters] <sup>></sup> ![Gaussian%20Blur...]
@@ -74,11 +68,17 @@ You can compare values for normal and dividing cells.
 
 # B - Automation
 
-The first step of automation w
+The first step of automation will be to reproduce step by step the above procedure
+using the commands saved in the the macro recorder.
 
-```
+
+
+<details>
+  <summary>Macro_01_BasicProcedure.ijm</summary>
+
+ ```
 // Open image_01.tif from the data directory:  
-open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
 // Duplicate the image:
 run("Duplicate...", " ");
@@ -109,6 +109,10 @@ roiManager("Show All with labels");
 roiManager("Deselect");
 roiManager("Measure");
 ```
+
+</details>
+
+
 
 <!---[ Buttons ]-------------------------------------------------------------->
 [Plugins]: https://img.shields.io/badge/Plugins-f0f0f0?style=plastic

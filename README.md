@@ -25,13 +25,13 @@ Duplicate the image:
 Filter image using a Gaussian kernel:   
 <!-- - `Process` > `Filters` > `Gaussian Blur...` -->
 - ![Process] <sup>></sup> ![Filters] <sup>></sup> ![Gaussian%20Blur...]
-    - Select `Sigma` = 2
+    - Select **Sigma** = 2
 
 Open the Threshold menu:  
 <!-- - `Image` > `Adjust` > `Threshold...` -->
 - ![Image] <sup>></sup> ![Adjust] <sup>></sup> ![Threshold...]
-    - Select `Otsu` method
-    - Click the `Apply` button
+    - Select **Otsu** method
+    - Click the **Apply** button
 
 We obtain a binary black (0) and white (255) mask.
 

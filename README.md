@@ -14,7 +14,7 @@ During this process we will keep track of the commands using the macro recorder:
 <!-- - `Plugins` > `Macros` > `Record...` -->
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
-Open a nuclei image from the ***data*** directory:   
+Open a nuclei image from the **data** directory:   
 <!-- - `File` > `Open...` -->
 - ![File] <sup>></sup> ![Open...]
 

@@ -15,7 +15,8 @@ During this process we will keep track of the commands using the macro recorder:
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
 Open a nuclei image from the `data` directory:   
-- `File` > `Open...`
+<!-- - `File` > `Open...` -->
+- ![File] <sup>></sup> ![Open...]
 
 Duplicate the image: 
 - `Image` > `Duplicate...`
@@ -74,11 +75,8 @@ The first step of automation w
 ![Plugins]
 
 <!---------------------------------[ Buttons ]--------------------------------->
-[Plugins]: https://img.shields.io/badge/Plugins-6fa8dc?style=plastic
-[Macros]: https://img.shields.io/badge/Macros-6fa8dc?style=plastic
-[Record...]: https://img.shields.io/badge/Record...-6fa8dc?style=plastic
-
-[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
-[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
-[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
-[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
+[Plugins]: https://img.shields.io/badge/Plugins-457bac?style=plastic
+[Macros]: https://img.shields.io/badge/Macros-457bac?style=plastic
+[Record...]: https://img.shields.io/badge/Record...-457bac?style=plastic
+[File]: https://img.shields.io/badge/File-457bac?style=plastic
+[Open...]: https://img.shields.io/badge/Open...-457bac?style=plastic

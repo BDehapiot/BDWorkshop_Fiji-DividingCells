@@ -11,11 +11,8 @@ We will first try the procedure manually.
 First, we will create a mask using an automatic thresholding procedure.  
 
 During this process we will keep track of the commands using the macro recorder:  
-- `Plugins` > `Macros` > `Record...`
-
-- ![Static Badge](https://img.shields.io/badge/%20Plugins%20-%20blue?color=rgb(100%2C%20100%2C%20100)) > ![Static Badge](https://img.shields.io/badge/%20Macros%20-%20blue?color=rgb(100%2C%20100%2C%20100)) > ![Static Badge](https://img.shields.io/badge/%20Record%20-%20blue?color=rgb(100%2C%20100%2C%20100)) 
-
-
+<!-- - `Plugins` > `Macros` > `Record...` -->
+- ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
 Open a nuclei image from the `data` directory:   
 - `File` > `Open...`
@@ -74,5 +71,14 @@ You can compare values for normal and dividing cells.
 
 The first step of automation w
 
+![Plugins]
 
+<!---------------------------------[ Buttons ]--------------------------------->
+[Plugins]: https://img.shields.io/badge/Plugins-6fa8dc?style=plastic
+[Macros]: https://img.shields.io/badge/Macros-6fa8dc?style=plastic
+[Record...]: https://img.shields.io/badge/Record...-6fa8dc?style=plastic
 
+[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
+[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
+[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic
+[Button Example]: https://img.shields.io/badge/Title-37a779?style=plastic

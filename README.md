@@ -40,15 +40,18 @@ We obtain a binary black (0) and white (255) mask.
 We will now apply some binary operations to improve our mask.
 
 Fill holes in the segemented objects:
-- `Process` > `Binary` > `Fill Holes`
+<!-- - `Process` > `Binary` > `Fill Holes` -->
+- ![Process] <sup>></sup> ![Binary] <sup>></sup> ![Fill%20Holes]
 
 Separate touching objects using the `Watershed` function:
-- `Process` > `Binary` > `Watershed`
+<!-- - `Process` > `Binary` > `Watershed` -->
+- ![Process] <sup>></sup> ![Binary] <sup>></sup> ![Watershed]
 
 ## 3. Objects selection
 
 Using the `Analyse Particles` menu we will next select objects based on their size and position:  
-- `Analyse` > `Analyse Particles...`
+<!-- - `Analyse` > `Analyse Particles...` -->
+- ![Analyse] <sup>></sup> ![Analyse%20Particles...]
     - Select `Size` = 300-Infinity (pixel units)`  
     - Select `Exclude on edges`
     - Select `Add to Manager`
@@ -60,7 +63,8 @@ Our objects are now stored as regions of interests in the ROI manager.
 The last step will consist of measuring the mean fluorescence intensity on the original image.
 
 Setup Fiji to measure mean fluorescence intensities:
-- `Analyse` > `Set Measurments...`
+<!-- - `Analyse` > `Set Measurments...` -->
+- ![Analyse] <sup>></sup> ![Set%20Measurments...]
     - Select only `Mean gray value` 
 
 Select the original image and do the following on the ROI manager:
@@ -75,9 +79,8 @@ You can compare values for normal and dividing cells.
 
 The first step of automation w
 
-![Plugins]
 
-<!---------------------------------[ Buttons ]--------------------------------->
+<!---[ Buttons ]-------------------------------------------------------------->
 [Plugins]: https://img.shields.io/badge/Plugins-f0f0f0?style=plastic
 [Macros]: https://img.shields.io/badge/Macros-f0f0f0?style=plastic
 [Record...]: https://img.shields.io/badge/Record...-f0f0f0?style=plastic
@@ -90,3 +93,9 @@ The first step of automation w
 [Gaussian%20Blur...]: https://img.shields.io/badge/Gaussian%20Blur...-f0f0f0?style=plastic
 [Adjust]: https://img.shields.io/badge/Adjust-f0f0f0?style=plastic
 [Threshold...]: https://img.shields.io/badge/Threshold...-f0f0f0?style=plastic
+[Binary]: https://img.shields.io/badge/Binary-f0f0f0?style=plastic
+[Fill%20Holes]: https://img.shields.io/badge/Fill%20Holes-f0f0f0?style=plastic
+[Watershed]: https://img.shields.io/badge/Watershed-f0f0f0?style=plastic
+[Analyse]: https://img.shields.io/badge/Analyse-f0f0f0?style=plastic
+[Analyse%20Particles...]: https://img.shields.io/badge/Analyse%20Particles...-f0f0f0?style=plastic
+[Set%20Measurments...]: https://img.shields.io/badge/Set%20Measurments...-f0f0f0?style=plastic

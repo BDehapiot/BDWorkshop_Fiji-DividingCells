@@ -19,7 +19,8 @@ Open a nuclei image from the `data` directory:
 - ![File] <sup>></sup> ![Open...]
 
 Duplicate the image: 
-- `Image` > `Duplicate...`
+<!-- - `Image` > `Duplicate...` -->
+- ![Image] <sup>></sup> ![Duplicate...]
 
 Filter image using a Gaussian kernel:   
 - `Process` > `Filters` > `Gaussian Blur...`
@@ -80,3 +81,5 @@ The first step of automation w
 [Record...]: https://img.shields.io/badge/Record...-f0f0f0?style=plastic
 [File]: https://img.shields.io/badge/File-f0f0f0?style=plastic
 [Open...]: https://img.shields.io/badge/Open...-f0f0f0?style=plastic
+[Image]: https://img.shields.io/badge/Image-f0f0f0?style=plastic
+[Duplicate...]: https://img.shields.io/badge/Duplicate...-f0f0f0?style=plastic

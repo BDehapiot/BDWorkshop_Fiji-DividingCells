@@ -13,8 +13,7 @@ First, we will create a mask using an automatic thresholding procedure.
 During this process we will keep track of the commands using the macro recorder:  
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
-Open a nuclei image from the <span style="color:#5788b4">***data***</span>
- directory:   
+Open ***image_01.tif*** from the ***data*** directory:   
 - ![File] <sup>></sup> ![Open...]
 
 Duplicate the image: 
@@ -24,7 +23,7 @@ Filter image using a Gaussian kernel:
 - ![Process] <sup>></sup> ![Filters] <sup>></sup> ![Gaussian%20Blur...]
     - Select ***Sigma*** = 2
 
-Open the Threshold menu:  
+Apply threshold:  
 - ![Image] <sup>></sup> ![Adjust] <sup>></sup> ![Threshold...]
     - Select ***Otsu*** method
     - Click the ***Apply*** button
@@ -55,7 +54,7 @@ Our objects are now stored as regions of interests in the ROI manager.
 
 The last step will consist of measuring the mean fluorescence intensity on the original image.
 
-Setup Fiji to measure mean fluorescence intensities:
+Setup Fiji to measure mean intensities:
 - ![Analyse] <sup>></sup> ![Set%20Measurments...]
     - Select only ***Mean gray value*** 
 
@@ -71,6 +70,39 @@ You can compare values for normal and dividing cells.
 
 The first step of automation w
 
+```
+// Open ***image_01.tif*** from the ***data*** directory:  
+open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+
+// Duplicate the image:
+run("Duplicate...", " ");
+
+// Gaussian Blur: 
+run("Gaussian Blur...", "sigma=2");
+
+// Apply threshold:
+setAutoThreshold("Otsu dark no-reset");
+setOption("BlackBackground", true);
+run("Convert to Mask");
+
+// Fill holes:
+run("Fill Holes");
+
+// Separate touching objects:
+run("Watershed");
+
+// Select objects based on their size and position:
+run("Analyze Particles...", "size=300-Infinity pixel exclude add");
+
+// Setup Fiji to measure mean intensities:
+run("Set Measurements...", "mean redirect=None decimal=3");
+
+// Get measurments from the original image:
+selectWindow("image_01.tif");
+roiManager("Show All with labels");
+roiManager("Deselect");
+roiManager("Measure");
+```
 
 <!---[ Buttons ]-------------------------------------------------------------->
 [Plugins]: https://img.shields.io/badge/Plugins-f0f0f0?style=plastic

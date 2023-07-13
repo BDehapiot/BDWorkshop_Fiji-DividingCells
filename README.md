@@ -75,8 +75,8 @@ The first step of automation w
 ![Plugins]
 
 <!---------------------------------[ Buttons ]--------------------------------->
-[Plugins]: https://img.shields.io/badge/Plugins-457bac?style=plastic
-[Macros]: https://img.shields.io/badge/Macros-457bac?style=plastic
-[Record...]: https://img.shields.io/badge/Record...-457bac?style=plastic
-[File]: https://img.shields.io/badge/File-457bac?style=plastic
-[Open...]: https://img.shields.io/badge/Open...-457bac?style=plastic
+[Plugins]: https://img.shields.io/badge/Plugins-f0f0f0?style=plastic
+[Macros]: https://img.shields.io/badge/Macros-f0f0f0?style=plastic
+[Record...]: https://img.shields.io/badge/Record...-f0f0f0?style=plastic
+[File]: https://img.shields.io/badge/File-f0f0f0?style=plastic
+[Open...]: https://img.shields.io/badge/Open...-f0f0f0?style=plastic

@@ -68,23 +68,41 @@ You can compare values for normal and dividing cells.
 
 # B - Automation
 
-We will now automate the above procedure using ImageJ Macro language.
+We will now use ***ImageJ Macro language*** to automate the analysis and also add advanced features.
 
-## 1. Recapitulate the basic procedure
+## Exercice #1 : Automate the basic procedure
 Open the Fiji ***IDE*** (Integrated Development Environment):
 - ![Plugins] <sup>></sup> ![New] <sup>></sup> ![Macro]
 
-### Exercice #1
-Using the commands saved in the macro recorder assemble a macro to repeat the procedure.  
-- You will first need to open the 
-- Be careful to select the appropiate image
+Gather commands saved in the macro recorder to recapitulate the above procedure.  
+- The macro should:
+    - Open the image 
+    - Create the mask
+    - Perform binary operations
+    - 
 
+## Exercice #2 : Detect dividing cells
+As we have seen above, dividing cells due to the compaction of the chromosomes...
+
+For that you will need to use a ***if*** statement within a ***for*** loop  
+
+```
+for (i = 0; i < n nuclei; i++) { 
+		
+	if (condition) {
+
+	}
+
+}
+```
+
+## Exercice #3 : Add versatility
 
 <details>
   
 <summary>Macro_01_BasicProcedure.ijm</summary>
 
- ```
+```
 // Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
@@ -109,7 +127,6 @@ roiManager("Show All with labels");
 roiManager("Deselect");
 roiManager("Measure");
 ```
-
 </details>
 
 <!---[ Buttons ]-------------------------------------------------------------->

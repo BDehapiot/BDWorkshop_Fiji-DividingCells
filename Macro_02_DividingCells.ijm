@@ -1,5 +1,6 @@
+run("Close All Windows");
+
 // Open image:
-run("Close All Windows"); // fresh start
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
 // Create mask: 

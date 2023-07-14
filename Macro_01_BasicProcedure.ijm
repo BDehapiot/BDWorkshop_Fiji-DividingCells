@@ -1,5 +1,6 @@
-// Open image:
 run("Close All Windows"); // close all windows
+
+// Open image:
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
 // Create mask: 

@@ -78,7 +78,7 @@ You can compare values for normal and dividing cells.
 We will now use ***ImageJ Macro*** language to automate the analysis and also
 add advanced features.
 
-## Exercice #1 : Automate the basic procedure
+## Exercice 1 : Automate the basic procedure
 Open the Fiji ***IDE*** (Integrated Development Environment):
 - ![Plugins] <sup>></sup> ![New] <sup>></sup> ![Macro]
 
@@ -90,12 +90,13 @@ Gather commands from the macro recorder and recapitulate the above procedure.
     4) Select objects
     5) Make the measurments 
 
-⚠️ Add this to the of your code to close all windows that could interfere with the execution.
+⚠️ Add this to the of your code to close all windows that could interfere with 
+the execution.
 ```
 run("Close All Windows");
 ```
 
-## Exercice #2 : Detect dividing cells
+## Exercice 2 : Detect dividing cells
 As we have seen above, nuclei in dividing cell are brighter due to the 
 compaction of their chromosomes. We will take advantage of this to property
 to automatically detect dividing cells.
@@ -112,7 +113,8 @@ Here are some of the code snippets you will need to perform this task:
     ```
     - Add ***X*** and ***Y*** columns to the result table
 
-- Get the number of segmented objects by measuring the length of the result table:
+- Get the number of segmented objects by measuring the length of the result 
+table:
     ```
     n = nResults;
     ```
@@ -149,24 +151,35 @@ Here are some of the code snippets you will need to perform this task:
     run("Select None");
     ```
 
-## Exercice #3 : Batch processing
+## Exercice 3 : Batch processing
 
-The next step will consists in performing the analysis on all images contained 
-in the `data` directory. We will proceed step by step and first modify the
-code to make it able to handle any image. 
+The next step will consists of performing the analysis on all images contained 
+in the `data` directory. 
 
-### Step #1
+### Step 1
 
-For that we will start by defining a ***dynamic variable*** to handle image 
-names. The idea is to just modify the path to the image on the top of the code 
-and use this variable to handle the name of the image in the rest of the code. 
+We will proceed step by step and first start to handle image names dynamically
+using ***variables***. This will enable the code to process images without 
+relying on hard-coded names.
+
+For the sake of demonstration, we will first try to open the second image by 
+simply modifying the path at the beginning of the code.
+
+- Modify image path as follow:
+    ```
+    open(".../BDWorkshop_Fiji-DividingCells/data/image_02.tif");
+    ```
+
+This should output the following error : 
+`No window with the title "image_01.tif" found`  
+This is because later in the code 
 
 - Retrieve and store the image name in the `image_name` variable:
     ```
     open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
     image_name = getTitle();
     ```
-- Later in the code you can then replace:
+- Later in the code you can replace:
     ```
     selectWindow("image_01.tif");
     ```
@@ -175,7 +188,7 @@ and use this variable to handle the name of the image in the rest of the code.
     selectWindow(image_name);
     ```
 
-- Now you can modify the image path to open the second image:
+- You can now modify the image path to open the second image:
     ```
     open(".../BDWorkshop_Fiji-DividingCells/data/image_02.tif");
     ``` 
@@ -183,15 +196,15 @@ and use this variable to handle the name of the image in the rest of the code.
 ### Step #2
 
 
-
-
----
+-------------------------------------------------------------------------------
 
 <details>
   
 <summary>Macro_01_BasicProcedure.ijm</summary>
 
 ```
+run("Close All Windows"); // close all windows
+
 // Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
@@ -223,6 +236,8 @@ roiManager("Measure");
 <summary>Macro_02_DividingCells.ijm</summary>
 
 ```
+run("Close All Windows");
+
 // Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
@@ -259,6 +274,59 @@ for (i = 0; i < nResults; i++) {
 		makeRectangle(x-50, y-50, 100, 100);
 		run("Draw", "slice");
 
+	}
+}
+
+// Clean display image:
+run("Remove Overlay");
+run("Select None");
+```
+</details>
+
+<details>
+  
+<summary>Macro_03_BatchProcessing_01.ijm</summary>
+
+```
+run("Close All Windows");
+
+// Open image:
+open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+image_name = getTitle(); // Store the image name in a variable
+
+// Create mask: 
+run("Duplicate...", " ");
+run("Gaussian Blur...", "sigma=2");
+setAutoThreshold("Otsu dark no-reset");
+setOption("BlackBackground", true);
+run("Convert to Mask");
+
+// Binary operations: 
+run("Fill Holes");
+run("Watershed");
+
+// Objects selection:
+run("Analyze Particles...", "size=300-Infinity exclude add");
+
+// Fluorescence intensities measurements:
+run("Set Measurements...", "mean centroid redirect=None decimal=3");
+selectWindow(image_name); // Use image_name variable instead of the hard-coded name
+roiManager("Show All with labels");
+roiManager("Deselect");
+roiManager("Measure");
+
+// Detect dividing cells:
+for (i = 0; i < nResults; i++) { 
+	
+	mean = getResult("Mean", i);
+	x = getResult("X", i);
+	y = getResult("Y", i);
+	
+	// Draw rectangle:
+	if (mean > 90) {
+		makeRectangle(x-50, y-50, 100, 100);
+		run("Draw", "slice");
+		
 	}
 }
 

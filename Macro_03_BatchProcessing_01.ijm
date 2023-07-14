@@ -1,7 +1,8 @@
+run("Close All Windows");
+
 // Open image:
-run("Close All Windows"); // fresh start
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
-image_name = getTitle();
+image_name = getTitle(); // Store the image name in a variable
 
 // Create mask: 
 run("Duplicate...", " ");
@@ -18,8 +19,8 @@ run("Watershed");
 run("Analyze Particles...", "size=300-Infinity exclude add");
 
 // Fluorescence intensities measurements:
-run("Set Measurements...", "mean centroid redirect=None decimal=3"); // add centroid
-selectWindow(image_name);
+run("Set Measurements...", "mean centroid redirect=None decimal=3");
+selectWindow(image_name); // Use image_name variable instead of the hard-coded name
 roiManager("Show All with labels");
 roiManager("Deselect");
 roiManager("Measure");

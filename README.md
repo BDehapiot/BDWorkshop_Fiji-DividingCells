@@ -153,26 +153,30 @@ table:
 
 ## Exercice 3 : Batch processing
 
-The next step will consists of performing the analysis on all images contained 
-in the `data` directory. 
+The next step will consists of running the analysis on all images contained in 
+the `data` directory. 
 
 ### Step 1
 
-We will proceed step by step and first start to handle image names dynamically
-using ***variables***. This will enable the code to process images without 
-relying on hard-coded names.
+We will proceed step by step and first enhance the flexibility of our code by 
+managing image names dynamically, using ***variables***, instead of 
+hardcoding them directly into our script.
 
-For the sake of demonstration, we will first try to open the second image by 
-simply modifying the path at the beginning of the code.
+To understand why this is critical, we will open the second image by simply
+modifying the opening path.
 
 - Modify image path as follow:
     ```
     open(".../BDWorkshop_Fiji-DividingCells/data/image_02.tif");
     ```
 
-This should output the following error : 
+After running the macro we should get the following error : 
 `No window with the title "image_01.tif" found`  
-This is because later in the code 
+This error arises from the fact that deeper in the code we are using a
+hardcoded command to select the original image window :
+`selectWindow("image_01.tif");`
+
+To get around this problem, we need to store the name of imported images in a variable that we will later use to refer to the image.
 
 - Retrieve and store the image name in the `image_name` variable:
     ```
@@ -193,7 +197,48 @@ This is because later in the code
     open(".../BDWorkshop_Fiji-DividingCells/data/image_02.tif");
     ``` 
 
-### Step #2
+### Step 2
+
+We will now modify our code to process all images in a single execution. The basic principle involves listing the files contained in the `data` directory 
+and iterating over this list to successively open and process each image. 
+Since, this will imply some new concepts, particularly in terms of file path handling, it would be a good practice to start with a new, empty macro.
+
+Create a new macro from Fiji ***IDE***:
+- ![File] <sup>></sup> ![New]
+
+Create a ***for*** loop to iterate through the `data` directory content to 
+sucessively open all images.
+
+Here are some of the code snippets you will need to perform this task:
+
+- Define `data` directory path:
+    ```
+    dir_path = ".../BDWorkshop_Fiji-DividingCells/data/";
+    ```
+
+- List `data` directory files:
+    ```
+    dir_list = getFileList(dir_path);
+    ```
+
+- Retreive the number of files:
+    ```
+    nFiles = dir_list.length;
+    ```
+
+- Create the first image path and display it:
+    ```
+    image_01_path = dir_path + dir_list[0];
+    print(image_01_path);
+    ```
+
+
+### Step 3
+
+Finally, we will now merge our macros...
+
+## Concluding remarks:
+- ||| Bring parameters up in the code
 
 
 -------------------------------------------------------------------------------
@@ -275,6 +320,7 @@ for (i = 0; i < nResults; i++) {
 		run("Draw", "slice");
 
 	}
+
 }
 
 // Clean display image:
@@ -328,6 +374,7 @@ for (i = 0; i < nResults; i++) {
 		run("Draw", "slice");
 		
 	}
+
 }
 
 // Clean display image:

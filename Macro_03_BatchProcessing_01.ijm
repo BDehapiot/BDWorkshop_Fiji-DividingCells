@@ -38,6 +38,7 @@ for (i = 0; i < nResults; i++) {
 		run("Draw", "slice");
 		
 	}
+	
 }
 
 // Clean display image:

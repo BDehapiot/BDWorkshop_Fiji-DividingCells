@@ -90,6 +90,11 @@ Gather commands from the macro recorder and recapitulate the above procedure.
     4) Select objects
     5) Make the measurments 
 
+⚠️ Add this to the of your code to close all windows that could interfere with the execution.
+```
+run("Close All Windows");
+```
+
 ## Exercice #2 : Detect dividing cells
 As we have seen above, nuclei in dividing cell are brighter due to the 
 compaction of their chromosomes. We will take advantage of this to property
@@ -99,13 +104,13 @@ We will use a ***for*** loop combined to an ***if*** statement to check
 the mean fluorescence intensity for all segmented objects. If the measured 
 intensity is above a given threshold we will draw a rectangle around the object centroid on the original image. 
 
-Here are the code snippets you will need to perform this task:
+Here are some of the code snippets you will need to perform this task:
 
 - Modify your measurements to extract object ***centroid*** coordinates:
     ```
     run("Set Measurements...", "mean centroid redirect=None decimal=3");
     ```
-    - This will add ***X*** and ***Y*** columns to the result table
+    - Add ***X*** and ***Y*** columns to the result table
 
 - Get the number of segmented objects by measuring the length of the result table:
     ```
@@ -115,22 +120,15 @@ Here are the code snippets you will need to perform this task:
     ```
     value = getResult(column, idx);
     ```
-    <p style="font-size:12px; line-height:0;">
-    <strong><em>column</em></strong>
-    being a string
-    </p>
-    <p style="font-size:12px; line-height:0;">
-    <strong><em>idx</em></strong>
-    being the row index (start at 0)
-    </p>
-    <!-- - ***idx*** being the row index (start at 0) -->
+    - ***column*** - column name (e.g. "Mean")
+    - ***idx*** - row index (start at 0)
 
 - Make a rectangle selection:
     ```
     makeRectangle(x, y, width, height);
     ```
-    - ***x*** and ***y*** being the top left corner coordinates (pixel)
-    - ***width*** and ***height*** being the rectangle size (pixel)
+    - ***x*** and ***y*** - top left pixel coordinates
+    - ***width*** and ***height*** - rectangle size (pixels)
 
 - Draw a selection:
     ```
@@ -145,15 +143,24 @@ Here are the code snippets you will need to perform this task:
     }
     ```
 
-- Clean the original image:
+- Clean the original image at the end:
     ```
     run("Remove Overlay");
     run("Select None");
     ```
 
-
-
 ## Exercice #3 : Batch processing
+
+The next step will consists in performing the analysis on all images contained 
+in the ***data*** directory.
+
+We will first modify the macro to make it able to handle any image. For that we
+will define a dynamic image_name variable 
+
+
+
+
+---
 
 <details>
   
@@ -183,6 +190,55 @@ selectWindow("image_01.tif");
 roiManager("Show All with labels");
 roiManager("Deselect");
 roiManager("Measure");
+```
+</details>
+
+<details>
+  
+<summary>Macro_02_DividingCells.ijm</summary>
+
+```
+// Open image:
+open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+
+// Create mask: 
+run("Duplicate...", " ");
+run("Gaussian Blur...", "sigma=2");
+setAutoThreshold("Otsu dark no-reset");
+setOption("BlackBackground", true);
+run("Convert to Mask");
+
+// Binary operations: 
+run("Fill Holes");
+run("Watershed");
+
+// Objects selection:
+run("Analyze Particles...", "size=300-Infinity exclude add");
+
+// Fluorescence intensities measurements:
+run("Set Measurements...", "mean centroid redirect=None decimal=3"); // add centroid
+selectWindow("image_01.tif");
+roiManager("Show All with labels");
+roiManager("Deselect");
+roiManager("Measure");
+
+// Detect dividing cells:
+for (i = 0; i < nResults; i++) { 
+	
+	mean = getResult("Mean", i);
+	x = getResult("X", i);
+	y = getResult("Y", i);
+	
+	// Draw rectangle:
+	if (mean > 90) {
+		makeRectangle(x-50, y-50, 100, 100);
+		run("Draw", "slice");
+	}
+}
+
+// Clean display image:
+run("Remove Overlay");
+run("Select None");
 ```
 </details>
 

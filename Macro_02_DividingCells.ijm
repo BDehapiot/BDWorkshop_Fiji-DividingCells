@@ -1,4 +1,5 @@
 // Open image:
+run("Close All Windows"); // fresh start
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
 // Create mask: 
@@ -22,19 +23,20 @@ roiManager("Show All with labels");
 roiManager("Deselect");
 roiManager("Measure");
 
-//
+// Detect dividing cells:
 for (i = 0; i < nResults; i++) { 
 	
 	mean = getResult("Mean", i);
 	x = getResult("X", i);
 	y = getResult("Y", i);
 	
+	// Draw rectangle:
 	if (mean > 90) {
-		roiManager("Select", i);
 		makeRectangle(x-50, y-50, 100, 100);
 		run("Draw", "slice");
 	}
 }
+
+// Clean display image:
 run("Remove Overlay");
 run("Select None");
-

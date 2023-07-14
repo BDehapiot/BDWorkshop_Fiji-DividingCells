@@ -17,7 +17,7 @@ During this process we will keep track of the commands using the
 ***macro recorder***:  
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
-Open ***image_01.tif*** from the ***data*** directory:   
+Open `image_01.tif` from the `data` directory:   
 - ![File] <sup>></sup> ![Open...]
 
 Duplicate the image: 
@@ -106,7 +106,7 @@ intensity is above a given threshold we will draw a rectangle around the object 
 
 Here are some of the code snippets you will need to perform this task:
 
-- Modify your measurements to extract object ***centroid*** coordinates:
+- Modify your `Set Measurements...` statement to extract object ***centroid*** coordinates:
     ```
     run("Set Measurements...", "mean centroid redirect=None decimal=3");
     ```
@@ -152,10 +152,35 @@ Here are some of the code snippets you will need to perform this task:
 ## Exercice #3 : Batch processing
 
 The next step will consists in performing the analysis on all images contained 
-in the ***data*** directory.
+in the `data` directory. We will proceed step by step and first modify the
+code to make it able to handle any image. 
 
-We will first modify the macro to make it able to handle any image. For that we
-will define a dynamic image_name variable 
+### Step #1
+
+For that we will start by defining a ***dynamic variable*** to handle image 
+names. The idea is to just modify the path to the image on the top of the code 
+and use this variable to handle the name of the image in the rest of the code. 
+
+- Retrieve and store the image name in the `image_name` variable:
+    ```
+    open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+    image_name = getTitle();
+    ```
+- Later in the code you can then replace:
+    ```
+    selectWindow("image_01.tif");
+    ```
+    by:
+    ```
+    selectWindow(image_name);
+    ```
+
+- Now you can modify the image path to open the second image:
+    ```
+    open(".../BDWorkshop_Fiji-DividingCells/data/image_02.tif");
+    ``` 
+
+### Step #2
 
 
 
@@ -233,6 +258,7 @@ for (i = 0; i < nResults; i++) {
 	if (mean > 90) {
 		makeRectangle(x-50, y-50, 100, 100);
 		run("Draw", "slice");
+
 	}
 }
 

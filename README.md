@@ -3,14 +3,18 @@ Learn how to detect dividing cells using Fiji and ImageJ macro
 
 # A - Overview
 
-During this tutorial we will try to detect dividing cells based on...  
-We will first try the procedure manually.
+During cell division the chromosomes contained in the nuclei compact before
+being segregated between the two daughter cells. As a result, the fluo
+
+In this tutorial we will use basic Fiji commands and ImageJ Macro language
+to automatically detect these dividing cells. We will first
 
 ## 1. Create mask
 
 First, we will create a mask using an automatic thresholding procedure.  
 
-During this process we will keep track of the commands using the ***macro recorder***:  
+During this process we will keep track of the commands using the
+***macro recorder***:  
 - ![Plugins] <sup>></sup> ![Macros] <sup>></sup> ![Record...]
 
 Open ***image_01.tif*** from the ***data*** directory:   
@@ -42,7 +46,8 @@ Separate touching objects using the ***Watershed*** function:
 
 ## 3. Objects selection
 
-Using the ***Analyse Particles*** menu we will next select objects based on their size and position:  
+Using the ***Analyse Particles*** menu we will next select objects based on 
+their size and position:  
 - ![Analyse] <sup>></sup> ![Analyse%20Particles...]
     - Select ***Size*** = 300-Infinity
     - Select ***Exclude on edges***
@@ -52,7 +57,8 @@ Our objects are now stored as regions of interests in the ***ROI manager***.
 
 ## 4. Fluorescence intensities measurments
 
-The last step will consist of measuring the mean fluorescence intensity on the original image.
+The last step will consist of measuring the mean fluorescence intensity on the
+original image.
 
 Setup Fiji to measure mean intensities:
 - ![Analyse] <sup>></sup> ![Set%20Measurments...]
@@ -63,40 +69,53 @@ Select the original image and do the following on the ROI manager:
 - Make sure that no ROIs are selected by clicking ***Deselect***
 - Quantify fluorescence by clicking ***Measure***
 
-This should open a ***Results*** window with fluorescence mean intensity for every ROI.  
+This should open a ***Results*** window with fluorescence mean intensity for
+every ROI.  
 You can compare values for normal and dividing cells.
 
 # B - Automation
 
-We will now use ***ImageJ Macro language*** to automate the analysis and also add advanced features.
+We will now use ***ImageJ Macro*** language to automate the analysis and also
+add advanced features.
 
 ## Exercice #1 : Automate the basic procedure
 Open the Fiji ***IDE*** (Integrated Development Environment):
 - ![Plugins] <sup>></sup> ![New] <sup>></sup> ![Macro]
 
-Gather commands saved in the macro recorder to recapitulate the above procedure.  
+Gather commands from the macro recorder and recapitulate the above procedure.  
 - The macro should:
-    - Open the image 
-    - Create the mask
-    - Perform binary operations
-    - 
+    1) Open the image 
+    2) Create the mask
+    3) Perform binary operations
+    4) Select objects
+    5) Make the measurments 
 
 ## Exercice #2 : Detect dividing cells
-As we have seen above, dividing cells due to the compaction of the chromosomes...
+As we have seen above, dividing cell nuclei are brighter due to the compaction 
+of their chromosomes. We will take advantage of this property to detect those 
+cells and make a display to monitor our results.
+
+First, we will need to retrieve, together with mean intensity measurments, the ***centroid*** coordinates from our segemented objects.
+
+Modify your ***Set Measurments*** command as follow: 
+
+```
+run("Set Measurements...", "mean centroid redirect=None decimal=3");
+```
+
+You can now see that ***X*** and ***Y*** columns have been added to the 
+Results.
 
 For that you will need to use a ***if*** statement within a ***for*** loop  
 
 ```
-for (i = 0; i < n nuclei; i++) { 
-		
+for (i = 0; i < n ; i++) { 
 	if (condition) {
-
 	}
-
 }
 ```
 
-## Exercice #3 : Add versatility
+## Exercice #3 : Batch processing
 
 <details>
   

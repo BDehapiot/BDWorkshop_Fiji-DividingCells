@@ -91,38 +91,33 @@ Gather commands from the macro recorder and recapitulate the above procedure.
     5) Make the measurments 
 
 ## Exercice #2 : Detect dividing cells
-As we have seen above, nuclei in dividing cell are brighter due to the
-compaction of their chromosomes. We will take advantage of this property to
-detect those cells and make a display to monitor our results.
+As we have seen above, nuclei in dividing cell are brighter due to the 
+compaction of their chromosomes. We will take advantage of this to property
+to automatically detect dividing cells.
 
-First, we will need to retrieve, together with mean intensity measurments, the ***centroid*** coordinates from our segemented objects.
-
-Modify your ***Set Measurments*** command as follow: 
-
-```
-run("Set Measurements...", "mean centroid redirect=None decimal=3");
-```
-
-If you run the macro you see that ***X*** and ***Y*** columns are now added to
-the ***Results***.
-
-Next, we will use a ***for*** loop combined to an ***if*** statement to check 
-the mean fluorescence intensity for all segemented objects. If the measured 
-intensity is above a given value (determine it) we will then draw a rectangle
+We will use a ***for*** loop combined to an ***if*** statement to check 
+the mean fluorescence intensity for all segmented objects. If the measured 
+intensity is above a given value (determine it) we will draw a rectangle
 around the object centroid on the original image. 
 
 Here are the code snippets you will need to perform this task:
 
-- Get the number of segmented objects by retreiving the length of the result table:
+- Modify your measurements to extract object ***centroid*** coordinates:
     ```
-    n = nResults
+    run("Set Measurements...", "mean centroid redirect=None decimal=3");
     ```
-- Retreive a value in the result table:
+    - This will add ***X*** and ***Y*** columns to the result table
+
+- Get the number of segmented objects by measuring the length of the result table:
     ```
-    value = getResult("column", row);
+    n = nResults;
     ```
-    - ***x*** and ***y*** being the top left corner coordinates (pixel)
-    - ***width*** and ***height*** being the rectangle size (pixel)
+- Retreive values in the result table:
+    ```
+    value = getResult(column, row);
+    ```
+    - ***column*** being a string
+    - ***row*** being the index
 
 - Make a rectangle selection:
     ```
@@ -131,14 +126,18 @@ Here are the code snippets you will need to perform this task:
     - ***x*** and ***y*** being the top left corner coordinates (pixel)
     - ***width*** and ***height*** being the rectangle size (pixel)
 
- 
+- Draw a selection:
+    ```
+    run("Draw", "slice");
+    ```
 
-```
-for (i = 0; i < n ; i++) { 
-	if (condition) {
-	}
-}
-```
+- Use an ***if*** statement within a ***for*** loop:
+    ```
+    for (i = 0; i < n ; i++) { 
+        if (condition) {
+        }
+    }
+    ```
 
 ## Exercice #3 : Batch processing
 

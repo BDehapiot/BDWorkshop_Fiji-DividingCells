@@ -97,8 +97,7 @@ to automatically detect dividing cells.
 
 We will use a ***for*** loop combined to an ***if*** statement to check 
 the mean fluorescence intensity for all segmented objects. If the measured 
-intensity is above a given value (determine it) we will draw a rectangle
-around the object centroid on the original image. 
+intensity is above a given threshold we will draw a rectangle around the object centroid on the original image. 
 
 Here are the code snippets you will need to perform this task:
 
@@ -114,10 +113,17 @@ Here are the code snippets you will need to perform this task:
     ```
 - Retreive values in the result table:
     ```
-    value = getResult(column, row);
+    value = getResult(column, idx);
     ```
-    - ***column*** being a string
-    - ***row*** being the index
+    <p style="font-size:12px; line-height:0;">
+    <strong><em>column</em></strong>
+    being a string
+    </p>
+    <p style="font-size:12px; line-height:0;">
+    <strong><em>idx</em></strong>
+    being the row index (start at 0)
+    </p>
+    <!-- - ***idx*** being the row index (start at 0) -->
 
 - Make a rectangle selection:
     ```
@@ -133,11 +139,19 @@ Here are the code snippets you will need to perform this task:
 
 - Use an ***if*** statement within a ***for*** loop:
     ```
-    for (i = 0; i < n ; i++) { 
-        if (condition) {
+    for (i = 0; i < nResults ; i++) { 
+        if (value > threshold) {
         }
     }
     ```
+
+- Clean the original image:
+    ```
+    run("Remove Overlay");
+    run("Select None");
+    ```
+
+
 
 ## Exercice #3 : Batch processing
 

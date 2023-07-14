@@ -1,7 +1,7 @@
 // Open image:
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 
-// Segmentation mask: 
+// Create mask: 
 run("Duplicate...", " ");
 run("Gaussian Blur...", "sigma=2");
 setAutoThreshold("Otsu dark no-reset");

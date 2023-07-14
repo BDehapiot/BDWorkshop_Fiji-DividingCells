@@ -91,9 +91,9 @@ Gather commands from the macro recorder and recapitulate the above procedure.
     5) Make the measurments 
 
 ## Exercice #2 : Detect dividing cells
-As we have seen above, dividing cell nuclei are brighter due to the compaction 
-of their chromosomes. We will take advantage of this property to detect those 
-cells and make a display to monitor our results.
+As we have seen above, nuclei in dividing cell are brighter due to the
+compaction of their chromosomes. We will take advantage of this property to
+detect those cells and make a display to monitor our results.
 
 First, we will need to retrieve, together with mean intensity measurments, the ***centroid*** coordinates from our segemented objects.
 
@@ -103,10 +103,35 @@ Modify your ***Set Measurments*** command as follow:
 run("Set Measurements...", "mean centroid redirect=None decimal=3");
 ```
 
-You can now see that ***X*** and ***Y*** columns have been added to the 
-Results.
+If you run the macro you see that ***X*** and ***Y*** columns are now added to
+the ***Results***.
 
-For that you will need to use a ***if*** statement within a ***for*** loop  
+Next, we will use a ***for*** loop combined to an ***if*** statement to check 
+the mean fluorescence intensity for all segemented objects. If the measured 
+intensity is above a given value (determine it) we will then draw a rectangle
+around the object centroid on the original image. 
+
+Here are the code snippets you will need to perform this task:
+
+- Get the number of segmented objects by retreiving the length of the result table:
+    ```
+    n = nResults
+    ```
+- Retreive a value in the result table:
+    ```
+    value = getResult("column", row);
+    ```
+    - ***x*** and ***y*** being the top left corner coordinates (pixel)
+    - ***width*** and ***height*** being the rectangle size (pixel)
+
+- Make a rectangle selection:
+    ```
+    makeRectangle(x, y, width, height);
+    ```
+    - ***x*** and ***y*** being the top left corner coordinates (pixel)
+    - ***width*** and ***height*** being the rectangle size (pixel)
+
+ 
 
 ```
 for (i = 0; i < n ; i++) { 

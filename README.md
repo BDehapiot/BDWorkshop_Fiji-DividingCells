@@ -95,6 +95,8 @@ the execution.
 ```
 run("Close All Windows");
 ```
+⚠️ When writing paths within the macro be sure to use slash `/` and not
+backslash `\`.
 
 ## Exercice 2 : Detect dividing cells
 As we have seen above, nuclei in dividing cell are brighter due to the 
@@ -232,10 +234,11 @@ Here are some of the code snippets you will need to perform this task:
     print(image_01_path);
     ```
 
-
 ### Step 3
 
 Finally, we will now merge our macros...
+
+⚠️ Check iteration indexes (i, j)
 
 ## Concluding remarks:
 - ||| Bring parameters up in the code
@@ -331,13 +334,13 @@ run("Select None");
 
 <details>
   
-<summary>Macro_03_BatchProcessing_01.ijm</summary>
+<summary>Macro_03_BatchProcessing_Step1.ijm</summary>
 
 ```
 run("Close All Windows");
 
 // Open image:
-open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
 image_name = getTitle(); // Store the image name in a variable
 
 // Create mask: 

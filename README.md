@@ -241,14 +241,21 @@ Here are some of the code snippets you will need to perform this task:
 
 ### Step 3
 
-Finally, we will now merge our macros by fitting the detection procedure within
-the for loop we just created.  
+Finally, we will now merge our two macros by inserting the detection procedure within the for loop we just created. By doing so we will be carefull that outputs from previous iterations do not interfere with the current analysis.
 
-⚠️ Check iteration indexes (i, j)
+Here are some of the code snippets you will need to perform this task:
 
-## Concluding remarks:
-- ||| Bring parameters up in the code
+- Clear ROI manager:
+    ```
+	roiManager("Deselect");
+	roiManager("Delete");
+    ```
+- Clear Results:
+    ```
+	run("Clear Results");
+    ```
 
+⚠️ In nested loops (loop within loop), indexing variable names (e.g. `i`) must be unique.
 
 -------------------------------------------------------------------------------
 

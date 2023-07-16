@@ -1,4 +1,4 @@
-run("Close All Windows");
+runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
 
 // Define directory path and list content
 dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";

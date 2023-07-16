@@ -8,4 +8,4 @@ for (i = 0; i < dir_list.length; i++) {
 	print(image_path); // Display created paths
 	open(image_path); // Open images using created paths
 	
-}
+}

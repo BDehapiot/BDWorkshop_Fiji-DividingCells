@@ -95,7 +95,7 @@ backslash `\`.
 ⚠️ Add this to the of your code to close all windows that could interfere with 
 the execution.
 ```
-run("Close All Windows");
+runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
 ```
 
 ## Exercice 2 : Detect dividing cells
@@ -241,7 +241,8 @@ Here are some of the code snippets you will need to perform this task:
 
 ### Step 3
 
-Finally, we will now merge our two macros by inserting the detection procedure within the for loop we just created. By doing so we will be carefull that outputs from previous iterations do not interfere with the current analysis.
+Finally, we will now merge our two macros by inserting the detection procedure within the for loop we just created. By doing so we will ensure that outputs
+from previous iterations do not interfere with the current analysis.
 
 Here are some of the code snippets you will need to perform this task:
 
@@ -255,7 +256,7 @@ Here are some of the code snippets you will need to perform this task:
 	run("Clear Results");
     ```
 
-⚠️ In nested loops (loop within loop), indexing variable names (e.g. `i`) must be unique.
+⚠️ Indexing variable (e.g. `i`) in nested loops must be unique.
 
 -------------------------------------------------------------------------------
 
@@ -264,7 +265,7 @@ Here are some of the code snippets you will need to perform this task:
 <summary>Macro_01_BasicProcedure.ijm</summary>
 
 ```
-run("Close All Windows"); // close all windows
+runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm"); // close all windows
 
 // Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
@@ -297,7 +298,7 @@ roiManager("Measure");
 <summary>Macro_02_DividingCells.ijm</summary>
 
 ```
-run("Close All Windows");
+runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
 
 // Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
@@ -350,7 +351,7 @@ run("Select None");
 <summary>Macro_03_BatchProcessing_Step1.ijm</summary>
 
 ```
-run("Close All Windows");
+runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
 
 // Open image:
 open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
@@ -396,6 +397,93 @@ for (i = 0; i < nResults; i++) {
 // Clean display image:
 run("Remove Overlay");
 run("Select None");
+```
+</details>
+
+<details>
+  
+<summary>Macro_03_BatchProcessing_Step2.ijm</summary>
+
+```
+// Data directory path and content
+dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/"; 
+dir_list = getFileList(dir_path);
+
+for (i = 0; i < dir_list.length; i++) {
+	
+	image_path = dir_path + dir_list[i];
+	print(image_path); // Display created paths
+	open(image_path); // Open images using created paths
+	
+}
+```
+</details>
+
+<details>
+  
+<summary>Macro_03_BatchProcessing_Step3.ijm</summary>
+
+```
+runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+
+// Define directory path and list content
+dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_list = getFileList(dir_path);
+
+// Process all images
+for (i = 0; i < dir_list.length; i++) {
+	
+	// Open image:
+	open(dir_path + dir_list[i]);
+	image_name = getTitle();
+	
+	// Create mask: 
+	run("Duplicate...", " ");
+	run("Gaussian Blur...", "sigma=2");
+	setAutoThreshold("Otsu dark no-reset");
+	setOption("BlackBackground", true);
+	run("Convert to Mask");
+	
+	// Binary operations: 
+	run("Fill Holes");
+	run("Watershed");
+	
+	// Objects selection:
+	run("Analyze Particles...", "size=300-Infinity exclude add");
+	
+	// Fluorescence intensities measurements:
+	run("Set Measurements...", "mean centroid redirect=None decimal=3");
+	selectWindow(image_name);
+	roiManager("Show All with labels");
+	roiManager("Deselect");
+	roiManager("Measure");
+	
+	// Detect dividing cells:
+	for (j = 0; j < nResults; j++) { 
+		
+		mean = getResult("Mean", j);
+		x = getResult("X", j);
+		y = getResult("Y", j);
+		
+		// Draw rectangle:
+		if (mean > 90) {
+			makeRectangle(x-50, y-50, 100, 100);
+			run("Draw", "slice");
+			
+		}
+		
+	}
+	
+	// Clean display image:
+	run("Remove Overlay");
+	run("Select None");
+	
+	// Clear ROI manager and Results
+	roiManager("Deselect");
+	roiManager("Delete");
+	run("Clear Results");
+	
+}
 ```
 </details>
 

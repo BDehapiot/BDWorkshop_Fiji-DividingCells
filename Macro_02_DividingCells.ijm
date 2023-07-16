@@ -1,4 +1,4 @@
-run("Close All Windows");
+runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
 
 // Open image:
 open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");

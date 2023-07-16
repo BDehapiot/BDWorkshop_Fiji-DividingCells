@@ -90,13 +90,13 @@ Gather commands from the macro recorder and recapitulate the above procedure.
     4) Select objects
     5) Make the measurments 
 
+⚠️ When writing paths within the macro be sure to use slash `/` and not
+backslash `\`.  
 ⚠️ Add this to the of your code to close all windows that could interfere with 
 the execution.
 ```
 run("Close All Windows");
 ```
-⚠️ When writing paths within the macro be sure to use slash `/` and not
-backslash `\`.
 
 ## Exercice 2 : Detect dividing cells
 As we have seen above, nuclei in dividing cell are brighter due to the 
@@ -105,11 +105,13 @@ to automatically detect dividing cells.
 
 We will use a ***for*** loop combined to an ***if*** statement to check 
 the mean fluorescence intensity for all segmented objects. If the measured 
-intensity is above a given threshold we will draw a rectangle around the object centroid on the original image. 
+intensity is above a given threshold we will draw a rectangle around the object
+centroid on the original image. 
 
 Here are some of the code snippets you will need to perform this task:
 
-- Modify your `Set Measurements...` statement to extract object ***centroid*** coordinates:
+- Modify your `Set Measurements...` statement to extract object ***centroid*** 
+coordinates:
     ```
     run("Set Measurements...", "mean centroid redirect=None decimal=3");
     ```
@@ -178,7 +180,8 @@ This error arises from the fact that deeper in the code we are using a
 hardcoded command to select the original image window :
 `selectWindow("image_01.tif");`
 
-To get around this problem, we need to store the name of imported images in a variable that we will later use to refer to the image.
+To get around this problem, we need to store the name of imported images in a 
+variable that we will later use to refer to the image.
 
 - Retrieve and store the image name in the `image_name` variable:
     ```
@@ -201,9 +204,11 @@ To get around this problem, we need to store the name of imported images in a va
 
 ### Step 2
 
-We will now modify our code to process all images in a single execution. The basic principle involves listing the files contained in the `data` directory 
+We will now modify our code to process all images in a single execution. The 
+basic principle involves listing the files contained in the `data` directory 
 and iterating over this list to successively open and process each image. 
-Since, this will imply some new concepts, particularly in terms of file path handling, it would be a good practice to start with a new, empty macro.
+Since, this will imply some new concepts, particularly in terms of file path 
+handling, it would be a good practice to start with a new, empty macro.
 
 Create a new macro from Fiji ***IDE***:
 - ![File] <sup>></sup> ![New]
@@ -236,7 +241,8 @@ Here are some of the code snippets you will need to perform this task:
 
 ### Step 3
 
-Finally, we will now merge our macros...
+Finally, we will now merge our macros by fitting the detection procedure within
+the for loop we just created.  
 
 ⚠️ Check iteration indexes (i, j)
 

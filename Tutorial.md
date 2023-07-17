@@ -265,10 +265,49 @@ Here are some of the code snippets you will need to perform this task:
 
 ## Exercice 4 : Manage parameters
 
-When writing a macro, a good idea is to make all parameters that you, or 
-someone using your code, easy to access.  
+### Step 1
 
-By creating new variables, listed in the top of your code, make 
+When writing a macro, it is a good idea to make all parameters you would be susceptible to modify easy to access. One way of doing it is to list these
+parameters as variables in the top part of the code, and replace their 
+associated commands deeper in the code.    
+
+Your exercice here will be to modify your code to create new variables to get:
+- `sigma` - Adjustable sigma for Gaussian blur 
+- `fillHoles` - Optional fill hole operation (using conditional statement with boolean `true` or `false`)  
+- `splitObjects` - Optional watershed operation (using conditional statement with boolean `true` or `false`)
+- `minSize` - Adjustable minimum size for filtering out objects 
+- `minIntensity` - Adjustable minimum intensity to detect dividing cells 
+
+To do this you will rely on string manipulation/concatenation to make
+harcoded commands dynamic.
+
+This is for example how you would insert a number within a string:
+```
+number = 7
+print("There is " + number + " continents")
+```
+The output should read: `There is 7 continents`
+
+### Step 2
+Another level of refinement would be to list adjustable parameters in
+a dialog window to avoid users to read the actual code. 
+
+Here is an example for the `sigma` parameter, you can add the others yourself.
+
+Initialize and setup the dialog window:
+```
+Dialog.create("Options");
+sigma = Dialog.addNumber("Sigma for Gaussian blur", 2);
+```
+Display it:
+```
+Dialog.show();
+```
+
+Retrieve the user inputs:
+```
+minSize = Dialog.getNumber();
+```
 
 -------------------------------------------------------------------------------
 
@@ -479,6 +518,173 @@ for (i = 0; i < dir_list.length; i++) {
 		
 		// Draw rectangle:
 		if (mean > 90) {
+			makeRectangle(x-50, y-50, 100, 100);
+			run("Draw", "slice");
+			
+		}
+		
+	}
+	
+	// Clean display image:
+	run("Remove Overlay");
+	run("Select None");
+	
+	// Clear ROI manager and Results
+	roiManager("Deselect");
+	roiManager("Delete");
+	run("Clear Results");
+	
+}
+```
+</details>
+
+<details>
+  
+<summary>Macro_04_Parameters_Step1.ijm</summary>
+
+```
+// Parameters
+sigma = 2;
+fillHoles = false;
+splitObjects = false;
+minSize = 300;
+minIntensity = 30;
+
+runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+
+// Define directory path and list content
+dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_list = getFileList(dir_path);
+
+// Process all images
+for (i = 0; i < dir_list.length; i++) {
+	
+	// Open image:
+	open(dir_path + dir_list[i]);
+	image_name = getTitle();
+	
+	// Create mask: 
+	run("Duplicate...", " ");
+	run("Gaussian Blur...", "sigma=" + sigma); // Dynamic parameter
+	setAutoThreshold("Otsu dark no-reset");
+	setOption("BlackBackground", true);
+	run("Convert to Mask");
+	
+	// Binary operations: 
+	if (fillHoles == true) {
+		run("Fill Holes");
+		} // Conditionnal processing
+	if (splitObjects == true) {
+		run("Watershed");
+		} // Conditionnal processing
+	
+	// Objects selection:
+	run("Analyze Particles...", "size=" + minSize + "-Infinity exclude add"); // Dynamic parameter
+	
+	// Fluorescence intensities measurements:
+	run("Set Measurements...", "mean centroid redirect=None decimal=3");
+	selectWindow(image_name);
+	roiManager("Show All with labels");
+	roiManager("Deselect");
+	roiManager("Measure");
+	
+	// Detect dividing cells:
+	for (j = 0; j < nResults; j++) { 
+		
+		mean = getResult("Mean", j);
+		x = getResult("X", j);
+		y = getResult("Y", j);
+		
+		// Draw rectangle:
+		if (mean > minIntensity) { // Dynamic parameter
+			makeRectangle(x-50, y-50, 100, 100);
+			run("Draw", "slice");
+			
+		}
+		
+	}
+	
+	// Clean display image:
+	run("Remove Overlay");
+	run("Select None");
+	
+	// Clear ROI manager and Results
+	roiManager("Deselect");
+	roiManager("Delete");
+	run("Clear Results");
+	
+}
+```
+</details>
+
+<details>
+  
+<summary>Macro_04_Parameters_Step2.ijm</summary>
+
+```
+// Initialize, setup and show dialog window
+Dialog.create("Options"); 
+sigma = Dialog.addNumber("Sigma for Gaussian blur", 2);
+fillHoles = Dialog.addNumber("Fill holes objects", true);
+splitObjects = Dialog.addNumber("Split objects", true);
+minSize = Dialog.addNumber("Minimum object size", 300);
+minIntensity = Dialog.addNumber("Minimum object intensity", 90);
+Dialog.show();
+
+// Retrieve values from the dialog window
+minSize = Dialog.getNumber();
+fillHoles = Dialog.getNumber();
+splitObjects = Dialog.getNumber();
+minSize = Dialog.getNumber();
+minIntensity = Dialog.getNumber();
+
+runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+
+// Define directory path and list content
+dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_list = getFileList(dir_path);
+
+// Process all images
+for (i = 0; i < dir_list.length; i++) {
+	
+	// Open image:
+	open(dir_path + dir_list[i]);
+	image_name = getTitle();
+	
+	// Create mask: 
+	run("Duplicate...", " ");
+	run("Gaussian Blur...", "sigma=" + sigma); // Dynamic parameter
+	setAutoThreshold("Otsu dark no-reset");
+	setOption("BlackBackground", true);
+	run("Convert to Mask");
+	
+	// Binary operations: 
+	if (fillHoles == true) {
+		run("Fill Holes");
+		} // Conditionnal processing
+	if (splitObjects == true) {
+		run("Watershed");
+		} // Conditionnal processing
+	
+	// Objects selection:
+	run("Analyze Particles...", "size=" + minSize + "-Infinity exclude add"); // Dynamic parameter
+	
+	// Fluorescence intensities measurements:
+	run("Set Measurements...", "mean centroid redirect=None decimal=3");
+	selectWindow(image_name);
+	roiManager("Show All with labels");
+	roiManager("Deselect");
+	roiManager("Measure");
+	
+	// Detect dividing cells:
+	for (j = 0; j < nResults; j++) { 
+		
+		mean = getResult("Mean", j);
+		x = getResult("X", j);
+		y = getResult("Y", j);
+		
+		// Draw rectangle:
+		if (mean > minIntensity) { // Dynamic parameter
 			makeRectangle(x-50, y-50, 100, 100);
 			run("Draw", "slice");
 			

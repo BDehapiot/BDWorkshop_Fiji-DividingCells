@@ -42,7 +42,7 @@ We obtain a binary black (0) and white (255) mask.
 
 We will now apply some binary operations to improve our mask.
 
-Fill holes in the segemented objects:
+***Fill holes*** in the segemented objects:
 - ![Process] <sup>></sup> ![Binary] <sup>></sup> ![Fill%20Holes]
 
 Separate touching objects using the ***Watershed*** function:
@@ -262,6 +262,13 @@ Here are some of the code snippets you will need to perform this task:
     ```
 
 ⚠️ Indexing variable (e.g. `i`) in nested loops must be unique.
+
+## Exercice 4 : Manage parameters
+
+When writing a macro, a good idea is to make all parameters that you, or 
+someone using your code, easy to access.  
+
+By creating new variables, listed in the top of your code, make 
 
 -------------------------------------------------------------------------------
 

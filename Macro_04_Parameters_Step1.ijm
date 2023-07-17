@@ -3,7 +3,7 @@ sigma = 2;
 fillHoles = false;
 splitObjects = false;
 minSize = 300;
-minIntensity = 30;
+minIntensity = 90;
 
 runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 

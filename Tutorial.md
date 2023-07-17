@@ -457,7 +457,7 @@ run("Select None");
 
 ```
 // Data directory path and content
-dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/"; 
+dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/"; 
 dir_list = getFileList(dir_path);
 
 for (i = 0; i < dir_list.length; i++) {
@@ -478,7 +478,7 @@ for (i = 0; i < dir_list.length; i++) {
 runMacro("".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/";
+dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images
@@ -553,7 +553,7 @@ minIntensity = 30;
 runMacro("".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/";
+dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images
@@ -641,7 +641,7 @@ minIntensity = Dialog.getNumber();
 runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/";
+dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images

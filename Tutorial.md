@@ -3,11 +3,15 @@ Learn how to detect dividing cells using Fiji and ImageJ macro
 
 # A - Overview
 
-During cell division the chromosomes contained in the nuclei compact before
-being segregated between the two daughter cells. As a result, the fluo
+During cell division, the chromosomes contained in the nuclei are compacted 
+before being segregated between the two daughter cells. This phenomenon is 
+easily observed under fluorescence microscopy as the DNA staining (e.g. DAPI) 
+appears brighter in dividing cells.
 
-In this tutorial we will use basic Fiji commands and ImageJ Macro language
-to automatically detect these dividing cells. We will first
+In this tutorial, we'll use Fiji's basic commands and the ***ImageJ Macro*** 
+language to automatically detect dividing cells in a collection of images.  We 
+will first manually execute the procedure and then use the ***macro recorder***
+to retrieve the commands needed to assemble a macro. 
 
 ## 1. Create mask
 
@@ -76,7 +80,7 @@ You can compare values for normal and dividing cells.
 # B - Automation
 
 We will now use ***ImageJ Macro*** language to automate the analysis and also
-add advanced features.
+add some more advanced features.
 
 ## Exercice 1 : Automate the basic procedure
 Open the Fiji ***IDE*** (Integrated Development Environment):
@@ -241,7 +245,8 @@ Here are some of the code snippets you will need to perform this task:
 
 ### Step 3
 
-Finally, we will now merge our two macros by inserting the detection procedure within the for loop we just created. By doing so we will ensure that outputs
+Finally, we will now merge our two macros by inserting the detection procedure 
+within the for loop we just created. By doing so we will ensure that outputs
 from previous iterations do not interfere with the current analysis.
 
 Here are some of the code snippets you will need to perform this task:

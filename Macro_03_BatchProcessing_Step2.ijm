@@ -1,5 +1,5 @@
 // Data directory path and content
-dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/"; 
+dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/"; 
 dir_list = getFileList(dir_path);
 
 for (i = 0; i < dir_list.length; i++) {

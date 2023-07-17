@@ -1,7 +1,7 @@
-runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Open image:
-open("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
 
 // Create mask: 
 run("Duplicate...", " ");

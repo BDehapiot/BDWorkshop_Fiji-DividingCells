@@ -5,10 +5,10 @@ splitObjects = false;
 minSize = 300;
 minIntensity = 30;
 
-runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images

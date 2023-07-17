@@ -99,7 +99,7 @@ backslash `\`.
 ⚠️ Add this to the of your code to close all windows that could interfere with 
 the execution.
 ```
-runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 ```
 
 ## Exercice 2 : Detect dividing cells
@@ -189,7 +189,7 @@ variable that we will later use to refer to the image.
 
 - Retrieve and store the image name in the `image_name` variable:
     ```
-    open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+    open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
     image_name = getTitle();
     ```
 - Later in the code you can replace:
@@ -203,7 +203,7 @@ variable that we will later use to refer to the image.
 
 - You can now modify the image path to open the second image:
     ```
-    open(".../BDWorkshop_Fiji-DividingCells/data/image_02.tif");
+    open(".../BDWorkshop_Fiji-DividingCells-main/data/image_02.tif");
     ``` 
 
 ### Step 2
@@ -224,7 +224,7 @@ Here are some of the code snippets you will need to perform this task:
 
 - Define `data` directory path:
     ```
-    dir_path = ".../BDWorkshop_Fiji-DividingCells/data/";
+    dir_path = ".../BDWorkshop_Fiji-DividingCells-main/data/";
     ```
 
 - List `data` directory files:
@@ -316,10 +316,10 @@ minSize = Dialog.getNumber();
 <summary>Macro_01_BasicProcedure.ijm</summary>
 
 ```
-runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm"); // close all windows
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm"); // close all windows
 
 // Open image:
-open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
 
 // Segmentation mask: 
 run("Duplicate...", " ");
@@ -349,10 +349,10 @@ roiManager("Measure");
 <summary>Macro_02_DividingCells.ijm</summary>
 
 ```
-runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Open image:
-open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
 
 // Create mask: 
 run("Duplicate...", " ");
@@ -402,10 +402,10 @@ run("Select None");
 <summary>Macro_03_BatchProcessing_Step1.ijm</summary>
 
 ```
-runMacro(".../BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Open image:
-open(".../BDWorkshop_Fiji-DividingCells/data/image_01.tif");
+open(".../BDWorkshop_Fiji-DividingCells-main/data/image_01.tif");
 image_name = getTitle(); // Store the image name in a variable
 
 // Create mask: 
@@ -457,7 +457,7 @@ run("Select None");
 
 ```
 // Data directory path and content
-dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/"; 
+dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/"; 
 dir_list = getFileList(dir_path);
 
 for (i = 0; i < dir_list.length; i++) {
@@ -475,10 +475,10 @@ for (i = 0; i < dir_list.length; i++) {
 <summary>Macro_03_BatchProcessing_Step3.ijm</summary>
 
 ```
-runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro("".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images
@@ -550,10 +550,10 @@ splitObjects = false;
 minSize = 300;
 minIntensity = 30;
 
-runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro("".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images
@@ -638,10 +638,10 @@ splitObjects = Dialog.getNumber();
 minSize = Dialog.getNumber();
 minIntensity = Dialog.getNumber();
 
-runMacro("C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/CloseAll.ijm");
+runMacro(".../BDWorkshop_Fiji-DividingCells-main/CloseAll.ijm");
 
 // Define directory path and list content
-dir_path = "C:/Users/bdeha/Projects/BDWorkshop_Fiji-DividingCells/data/";
+dir_path = "".../BDWorkshop_Fiji-DividingCells-main/data/";
 dir_list = getFileList(dir_path);
 
 // Process all images
